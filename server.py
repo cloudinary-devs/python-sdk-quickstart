@@ -16,12 +16,12 @@ def main():
   # Upload an asset and get its URL
   # ==============================
 
-  resp=cloudinary.uploader.upload("static/black_coat_portrait.jpg?v=1646918546985", faces=True)
+  resp=cloudinary.uploader.upload("static/black_coat_portrait.jpg")
   srcURL = cloudinary.CloudinaryImage("quickstart/test-asset").build_url()
   print("****Uploaded Asset URL****")
   print(srcURL)
   print("****Upload Response****")
-  print(resp, "\n")
+  print(json.dumps(resp,indent=2),"\n")
   
   # Transform the uploaded asset and get its URL
   # ==============================
