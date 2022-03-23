@@ -41,9 +41,5 @@ def main():
     update_resp=cloudinary.api.update("quickstart/test-asset", tags = "large")    
   print("****Update response****") 
   print(update_resp["tags"])
-  
-  # Remove tags
-  # ============================== 
-  cloudinary.uploader.remove_all_tags("quickstart/test-asset")
 
 main();
