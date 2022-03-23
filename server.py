@@ -1,11 +1,15 @@
 # Import the required packages
 # ==============================
 
-import os
+import json
+
+# read from .env file
+from dotenv import load_dotenv
+load_dotenv()
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import cloudinary.provisioning
 
 def main():
 
