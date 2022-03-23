@@ -16,7 +16,7 @@ def main():
   # Upload an asset and get its URL
   # ==============================
 
-  resp=cloudinary.uploader.upload("static/black_coat_portrait.jpg")
+  resp=cloudinary.uploader.upload("my_path/sample.jpg")
   srcURL = cloudinary.CloudinaryImage("quickstart/test-asset").build_url()
   print("****Uploaded Asset URL****")
   print(srcURL)
