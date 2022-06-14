@@ -1,40 +1,42 @@
-# Import the required packages
+# Set your Cloudinary credentials
 # ==============================
+from dotenv import load_dotenv
+load_dotenv()
 
+# Import the required libraries
+# ==============================
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
 # Import to format the JSON responses
 # ==============================
-
 import json
 
 # Check your configuration
 # ==============================
 config = cloudinary.Config()
-print(config.cloud_name)
-print(config.api_key)
+print("****1. Set up and configure the SDK:****\nCredentials: ", config.cloud_name, config.api_key, "\n")
 
 def main():
 
-  # Upload an asset and get its URL
+  # Upload the image and get its URL
   # ==============================
 
   # Upload the image.
-  cloudinary.uploader.upload("https://res.cloudinary.com/demo/image/upload/v1651575702/docs/sdk/test-asset.jpg", public_id="quickstart_butterfly", unique_filename=False, overwrite=True)
+  cloudinary.uploader.upload("https://cloudinary-devs.github.io/cld-docs-assets/assets/images/butterfly.jpeg", public_id="quickstart_butterfly", unique_filename = False,overwrite=True)
 
   # Build the URL for the image and save it in the variable 'srcURL'.
   srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
 
-  print("****Uploaded Asset URL****\n", srcURL, "\n")
-  
+  print("****2. Upload an image****\nDelivery URL: ", srcURL, "\n")
+
   # Get and use details of the image
   # ==============================
 
   # Get image details and save it in the variable 'image_info'.
   image_info=cloudinary.api.resource("quickstart_butterfly")
-  print("****Asset details****\n", json.dumps(image_info,indent=2),"\n")
+  print("****3. Get and use details of the image****\nUpload response:\n", json.dumps(image_info,indent=2), "\n")
 
   # Assign tags to the uploaded image based on its width. Save the response to the update in the variable 'update_resp'.
   if image_info["width"]>900:
@@ -43,17 +45,17 @@ def main():
     update_resp=cloudinary.api.update("quickstart_butterfly", tags = "medium")
   else:
     update_resp=cloudinary.api.update("quickstart_butterfly", tags = "small")
-  
-  print("****Tags****\n", update_resp["tags"])
 
+  print("New tag: ", update_resp["tags"], "\n")
   
   # Transform the image
   # ==============================
-  
-  # Transform the uploaded asset and save the generated URL in the variable 'transformedURL'.
-  transformedURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url(radius="max", effect="sepia")
 
-  print("****Transformation URL****\n", transformedURL, "\n")
+  # Transform the uploaded image and save the generated URL in the variable 'transformedURL'.
+  transformedURL = cloudinary.CloudinaryImage("quickstart_butterly").build_url(radius="max", effect="sepia")
+
+  print("****4. Transform the image****\nTransfrmation URL: ", transformedURL, "\n")
+
 
 
 main();
