@@ -1,4 +1,4 @@
-Cloudinary Python SDK Quickstart Code Example
+Python SDK Quick Start
 ======================================================
 
 This small Python project shows the finished result of the [Python SDK Quick Start](https://cloudinary.com/documentation/python_quickstart) instructions provided in the Cloudinary documentation.
