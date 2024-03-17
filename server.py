@@ -70,8 +70,8 @@ def createImageTag():
   # ==============================
 
   # Create an image tag with transformations applied to the src URL.
-  #imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
-  imageTag = cloudinary.utils.cloudinary_url("quickstart_butterfly", width = 100, height = 150, crop = "fill")
+  # imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
+  imageTag = CloudinaryImage("quickstart_butterfly").build_url(width = 100, height = 150, crop = "fill")
   # Log the image tag to the console
   print("****4. Transform the image****\nTransfrmation URL: ", imageTag, "\n")
 
