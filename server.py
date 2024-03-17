@@ -7,6 +7,7 @@ load_dotenv()
 # Import the Cloudinary libraries
 # ==============================
 import cloudinary
+from cloudinary import CloudinaryImage
 import cloudinary.uploader
 import cloudinary.api
 
@@ -30,15 +31,15 @@ def uploadImage():
   # ==============================
 
   # Upload the image.
-  # Use the uploaded file's name as the asset's public ID and allow overwriting the asset with new versions
+  # Set the asset's public ID and allow overwriting the asset with new versions
   cloudinary.uploader.upload("https://cloudinary-devs.github.io/cld-docs-assets/assets/images/butterfly.jpeg", public_id="quickstart_butterfly", unique_filename = False, overwrite=True)
 
   # Build the URL for the image and save it in the variable 'srcURL'
-  srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
+  srcURL = CloudinaryImage("quickstart_butterfly").build_url()
 
-  # Log the image URL to the console.
+  # Log the image URL to the console. 
+  # Copy this URL in a browser tab to generate the image on the fly.
   print("****2. Upload an image****\nDelivery URL: ", srcURL, "\n")
-
 
 
 def getAssetInfo():
@@ -69,8 +70,8 @@ def createImageTag():
   # ==============================
 
   # Create an image tag with transformations applied to the src URL.
-  imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
-
+  #imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
+  imageTag = cloudinary.utils.cloudinary_url("quickstart_butterfly", width = 100, height = 150, crop = "fill")
   # Log the image tag to the console
   print("****4. Transform the image****\nTransfrmation URL: ", imageTag, "\n")
 
@@ -80,5 +81,6 @@ def main():
   uploadImage()
   getAssetInfo()
   createImageTag()
+  
 main();
 
