@@ -74,7 +74,7 @@ def createImageTag():
   # Use this code instead if you want to create a complete HTML image element:
   # imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
 
-  # Log the image tag to the console
+  # Log the URL to the console
   print("****4. Transform the image****\nTransfrmation URL: ", transformedURL, "\n")
 
 
