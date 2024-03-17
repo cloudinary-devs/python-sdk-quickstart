@@ -64,7 +64,7 @@ def getAssetInfo():
 
 
 
-def createImageTag():
+def createTransformation():
 
   # Transform the image
   # ==============================
@@ -82,7 +82,7 @@ def createImageTag():
 def main():
   uploadImage()
   getAssetInfo()
-  createImageTag()
+  createTransformation()
   
 main();
 
