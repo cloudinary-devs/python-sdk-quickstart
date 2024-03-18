@@ -34,6 +34,21 @@ def uploadImage():
   # Set the asset's public ID and allow overwriting the asset with new versions
   cloudinary.uploader.upload("https://cloudinary-devs.github.io/cld-docs-assets/assets/images/butterfly.jpeg", public_id="quickstart_butterfly", unique_filename = False, overwrite=True)
 
+  # Define the transformation separately
+  transformation = [
+      {"width": 400, "height": 400, "crop": "crop"}
+  ]
+
+  # Upload the image with the specified transformation
+  result = cloudinary.uploader.upload(
+      "https://res.cloudinary.com/demo/image/upload/v1702378721/docs/wines.jpg", 
+      public_id="improve",
+      transformation=
+        [{"width": 400, "height": 400, "crop": "auto", "gravity":"auto", "effect": "improve:50"}]
+  )
+
+  print("@@@@@@@@@@@@")
+  print(result["secure_url"])
   # Build the URL for the image and save it in the variable 'srcURL'
   srcURL = CloudinaryImage("quickstart_butterfly").build_url()
 
@@ -71,11 +86,12 @@ def createTransformation():
 
   transformedURL = CloudinaryImage("quickstart_butterfly").build_url(width = 100, height = 150, crop = "fill")
 
-  # Use this code instead if you want to create a complete HTML image element:
-  # imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
-
   # Log the URL to the console
   print("****4. Transform the image****\nTransfrmation URL: ", transformedURL, "\n")
+
+  # Use this code instead if you want to create a complete HTML image element:
+  # imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
+  # print("****4. Transform the image****\nTransfrmation URL: ", imageTag, "\n")
 
 
 
