@@ -47,8 +47,6 @@ def uploadImage():
         [{"width": 400, "height": 400, "crop": "auto", "gravity":"auto", "effect": "improve:50"}]
   )
 
-  print("@@@@@@@@@@@@")
-  print(result["secure_url"])
   # Build the URL for the image and save it in the variable 'srcURL'
   srcURL = CloudinaryImage("quickstart_butterfly").build_url()
 
@@ -93,7 +91,29 @@ def createTransformation():
   # imageTag = cloudinary.CloudinaryImage("quickstart_butterfly").image(radius="max", effect="sepia")
   # print("****4. Transform the image****\nTransfrmation URL: ", imageTag, "\n")
 
+  # Retrieve user's profile image ID from database
+  user_profile_image_id = "quickstart_butterfly"
 
+  # Instantiate a CloudinaryImage object with user's profile image ID
+  profile_image = CloudinaryImage(user_profile_image_id)
+
+  # Generate URL with custom transformations based on user preferences
+  profile_image_url = profile_image.build_url(transformation={'width': 300, 'height': 300, 'crop': 'thumb'})
+  print("User Profile Image URL:", profile_image_url)
+
+  # User's preferred asset dimensions retrieved from database
+  user_preferred_width = 300
+  user_preferred_height = 200
+
+  # Check if user prefers square thumbnails
+  if user_preferred_width == user_preferred_height:
+      # Generate square thumbnail with crop mode
+      dynamic_asset_url, _ = cloudinary.utils.cloudinary_url("sample", transformation={'width': user_preferred_width, 'height': user_preferred_height, 'crop': 'fill'})
+  else:
+      # Generate rectangular thumbnail without crop
+      dynamic_asset_url, _ = cloudinary.utils.cloudinary_url("sample", transformation={'width': user_preferred_width, 'height': user_preferred_height})
+
+  print("Dynamic Asset URL:", dynamic_asset_url)
 
 def main():
   uploadImage()
